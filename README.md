@@ -1,6 +1,5 @@
 # STWave
 
-
 ![](./overview.png)
 
 ## System Requirments
@@ -13,19 +12,27 @@
 - Windows: Windows 10 ,  NVIDIA GeForce RTX 4060 GPU.
 
 ```STWave``` requires python >= 3.9. We tested it in python 3.9.19 and cuda 11.8 on Linux.
+
 ## Installation Guide
+
 ### Clone project
+
 ```shell
-git clone 
+git clone https://github.com/TaoJiang999/STWave.git
 cd STWave
 ```
+
 ### Create a virtual environment
+
 ```shell
 conda create -n stwave python=3.9 r-base=4.4.2 r-mclust -c conda-forge -y
 conda activate stwave
 ```
+
 ### Create a virtual environment
+
 ### Install packages
+
 ```shell
 pip install -r requirements.txt --index-url https://download.pytorch.org/whl/cu118 --extra-index-url https://pypi.org/simple
 pip install pyg_lib torch_scatter torch_sparse torch_cluster torch_spline_conv -f https://data.pyg.org/whl/torch-2.2.0+cu118.html
@@ -33,6 +40,7 @@ pip install torch_geometric
 ```
 
 ### Check environment is available
+
 ```shell
 python -c 'import rpy2'
 python -c "import torch; print(torch.__version__, torch.cuda.is_available(), torch.version.cuda)"
