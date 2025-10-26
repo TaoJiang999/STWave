@@ -32,7 +32,7 @@ conda activate stwave
 ### Install packages
 
 ```shell
-pip install -r requirements.txt --index-url https://download.pytorch.org/whl/cu118 --extra-index-url https://pypi.org/simple
+pip install -r requirements.txt   -i https://pypi.tuna.tsinghua.edu.cn/simple   --extra-index-url https://download.pytorch.org/whl/cu118   -f https://data.pyg.org/whl/torch-2.2.0+cu118.html
 pip install pyg_lib torch_scatter torch_sparse torch_cluster torch_spline_conv -f https://data.pyg.org/whl/torch-2.2.0+cu118.html
 pip install torch_geometric
 ```
