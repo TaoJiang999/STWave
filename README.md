@@ -15,7 +15,7 @@
 
 ## Installation Guide
 
-### Clone project
+### Clone STWave project
 
 ```shell
 git clone https://github.com/TaoJiang999/STWave.git
@@ -28,8 +28,6 @@ cd STWave
 conda create -n stwave python=3.9 r-base=4.4.2 r-mclust -c conda-forge -y
 conda activate stwave
 ```
-
-### Create a virtual environment
 
 ### Install packages
 
