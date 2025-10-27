@@ -51,7 +51,8 @@ python -c "import torch; print(torch.__version__, torch.cuda.is_available(), tor
 pip install .
 ```
 ## Usage
-## Tutoral
+## Tutorial
 For the step-by-step tutorial, please refer to: [STWave tutorial](https://github.com/TaoJiang999/STWave/tree/main/Tutorial)
 ## Analysis
+All custom code research is found in the [analysis](https://github.com/TaoJiang999/STWave/tree/main/analysis)
 ## Reference
