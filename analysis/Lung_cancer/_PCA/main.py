@@ -80,7 +80,7 @@ df.to_csv(dir+'/images/n_cluster.csv', index=False)
 # sc.tl.umap(adata)
 # # sc.tl.leiden(adata, random_state=2025, resolution=0.1)
 # sc.tl.louvain(adata, random_state=2025, resolution=0.3,key_added='leiden')
-# # adata = mclust_R(adata, used_obsm='DeepWave', num_cluster=cluster_num)
+# # adata = mclust_R(adata, used_obsm='STWave', num_cluster=cluster_num)
 
 
 

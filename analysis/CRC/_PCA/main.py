@@ -32,7 +32,7 @@ sc.pp.neighbors(adata, use_rep='X_pca')
 sc.tl.umap(adata)
 # sc.tl.leiden(adata, random_state=2025, resolution=0.1)
 sc.tl.louvain(adata, random_state=2025, resolution=0.05,key_added='leiden')
-# adata = mclust_R(adata, used_obsm='DeepWave', num_cluster=cluster_num)
+# adata = mclust_R(adata, used_obsm='STWave', num_cluster=cluster_num)
 rainbow_hex = [
     '#FF6666',  # 鲜红
     '#FFB266',  # 橙黄

@@ -10,7 +10,7 @@ This document will help you easily go through STWave model.
 
 ```STWave``` can run on Linux and windows. The package has been tested on the following systems:
 
-- Linux: Uhuntu 24.04.1, NVIDIA GeForce RTX 3080 Ti GPU .
+- Linux: Uhuntu 24.04.1, NVIDIA GeForce RTX 3080 Ti GPU.
 - Windows: Windows 10 ,  NVIDIA GeForce RTX 4060 GPU.
 
 ```STWave``` requires python >= 3.9. We tested it in python 3.9.19 and cuda 11.8 on Linux.

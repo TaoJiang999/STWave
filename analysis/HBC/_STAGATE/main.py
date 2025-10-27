@@ -88,7 +88,7 @@ df.to_csv(dir+'/metric.csv', index=False)
 # sc.tl.umap(adata)
 # # sc.tl.leiden(adata, random_state=2025, resolution=0.3)
 # sc.tl.louvain(adata, random_state=2025, resolution=0.3,key_added='leiden')
-# # adata = mclust_R(adata, used_obsm='DeepWave', num_cluster=cluster_num)
+# # adata = mclust_R(adata, used_obsm='STWave', num_cluster=cluster_num)
 
 # ax = sc.pl.spatial(adata, basis="spatial",show=False, spot_size=5.0,color='leiden',title='spatial clustering result of STAGATE',cmap='Pastel1')
 # # ax.invert_yaxis()
