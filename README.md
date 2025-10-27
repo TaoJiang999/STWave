@@ -39,7 +39,7 @@ pip install pyg_lib torch_scatter torch_sparse torch_cluster torch_spline_conv -
 pip install torch_geometric
 ```
 
-### Check environment is available
+### Check if the environment is available
 
 ```shell
 python -c 'import rpy2'
