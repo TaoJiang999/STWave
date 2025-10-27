@@ -52,6 +52,6 @@ pip install .
 ```
 ## Usage
 ## Tutoral
-For the step-by-step tutorial, please refer to: [STWave tutorial](https://github.com/TaoJiang999/STWave/Tutoral)
+For the step-by-step tutorial, please refer to: [STWave tutorial](https://github.com/TaoJiang999/STWave/tree/main/Tutorial)
 ## Analysis
 ## Reference
