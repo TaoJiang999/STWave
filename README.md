@@ -45,3 +45,13 @@ pip install torch_geometric
 python -c 'import rpy2'
 python -c "import torch; print(torch.__version__, torch.cuda.is_available(), torch.version.cuda)"
 ```
+
+### Install STWave
+```shell
+pip install .
+```
+## Usage
+## Tutoral
+For the step-by-step tutorial, please refer to: [STWave tutorial](https://github.com/TaoJiang999/STWave/Tutoral)
+## Analysis
+## Reference
