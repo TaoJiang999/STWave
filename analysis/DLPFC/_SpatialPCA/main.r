@@ -51,9 +51,8 @@ for (i in index){
     # p_tSNE$figure
 
 
-    # 保存 UMAP 嵌入
-    pcs <- LIBD@SpatialPCs  # 获取 Spatial PCs 的矩阵，行为 spot/barcode，列为 PC1~PC20
-
+    
+    pcs <- LIBD@SpatialPCs  
 
     print("clusterlabel length")
     print(length(clusterlabel))
@@ -92,7 +91,7 @@ for (i in index){
     output_file <- paste0(output_dir, "/", sample_names[i], "_spatial_emb.csv")
     write.csv(pcs_df, output_file, row.names = FALSE)
 
-    # umap_embed <- LIBD@SpatialPCs %*% prcomp(LIBD@SpatialPCs)$rotation[, 1:3]  # 模拟 RGB 嵌入
+    # umap_embed <- LIBD@SpatialPCs %*% prcomp(LIBD@SpatialPCs)$rotation[, 1:3]  
     # print(dim(umap_embed))
     # umap_df <- data.frame(
     # cell_id = cell_ids,

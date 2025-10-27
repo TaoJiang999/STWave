@@ -5,7 +5,7 @@ library(ggplot2)
 library(BayesSpace)
 library(Seurat)
 library(scuttle)
-# 直接使用pca来获取嵌入
+
 data_path <- "E:\\spatial_data\\data\\DLPFC"
 save_path <- "C:\\Users\\tao\\Desktop\\python\\wave\\DLPFC\\_BayesSpace\\images"
 data_path <- "/home/cavin/jiangtao/spatial_data/visium_spaceranger_out"

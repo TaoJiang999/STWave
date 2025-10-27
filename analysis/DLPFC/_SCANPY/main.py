@@ -2,7 +2,7 @@
 import scanpy as sc
 import anndata as ad
 import os
-# 获取当前工作目录
+
 current_dir = os.getcwd()
 print(f"Current working directory: {current_dir}")
 # Data retrieval
@@ -57,18 +57,18 @@ def train(name):
     sc.tl.pca(adata, n_comps=50)
     sc.pp.neighbors(adata,use_rep='X_pca')
     rainbow_hex = [
-    '#FF6666',  # 鲜红
-    '#FFB266',  # 橙黄
-    '#FFFF99',  # 淡黄
-    '#99FF99',  # 亮绿
-    '#99FFFF',  # 青色
-    '#99CCFF',  # 浅蓝
-    '#C299FF',  # 紫色
-    '#D32F2F',  # 深红
-    '#F57C00',  # 深橙
-    '#FBC02D',  # 深黄
-    '#388E3C',  # 深绿
-    '#0097A7',  # 深青
+    '#FF6666',  
+    '#FFB266',  
+    '#FFFF99',  
+    '#99FF99',  
+    '#99FFFF',  
+    '#99CCFF',  
+    '#C299FF',  
+    '#D32F2F',  
+    '#F57C00',  
+    '#FBC02D',  
+    '#388E3C',  
+    '#0097A7',  
 
     ]
     sc.tl.leiden(adata,resolution=1.0)

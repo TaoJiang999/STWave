@@ -88,13 +88,12 @@ def save_data(adata,name):
     print('HS:', HS_score)
 
     rainbow_hex = [
-    '#FF6666',  # 鲜红
-    '#FFB266',  # 橙黄
-    '#FFFF99',  # 淡黄
-    '#99FF99',  # 亮绿
-    '#99FFFF',  # 青色
-    '#99CCFF',  # 浅蓝
-    '#C299FF'   # 紫色
+    '#FF6666',  
+    '#FFFF99',  
+    '#99FF99',  
+    '#99FFFF',  
+    '#99CCFF',  
+    '#C299FF'   
     ]
     adata = adata[~adata.obs['ground_truth'].isnull()]
     r = {'ARI':ARI_score,'NMI':NMI_score,'HS':HS_score}
@@ -110,7 +109,7 @@ def save_data(adata,name):
     label_df = adata.obs['domain']
     label_df.to_csv(dir + name + '_label.csv')
     plt.savefig(dir+name+'.svg', bbox_inches='tight', dpi=300)
-    plt.close()  # 关闭当前图像，防止显示
+    plt.close()  
 
     # Plot UMAP
     sc.pp.neighbors(adata, use_rep='embedding')

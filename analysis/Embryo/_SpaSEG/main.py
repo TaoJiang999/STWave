@@ -114,14 +114,14 @@ def save_data(adata):
     print('NMI:', NMI_score)
     print('HS:', HS_score)
 
-    # 创建数据字典
+    
     data = {
         'Metric': ['ARI', 'NMI', 'HS'],
         'Score': [ARI_score, NMI_score, HS_score]
     }
-    # 创建 DataFrame
+    
     df = pd.DataFrame(data)
-    # 保存为 CSV 文件
+    
     df.to_csv(dir+'/images/metric_e1s3.csv', index=False)
 
     

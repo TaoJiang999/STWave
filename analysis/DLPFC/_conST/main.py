@@ -139,19 +139,19 @@ def main(id, domain):
 
         plot_color = ["#d62728", "#9467bd", "#e377c2", "#8c564b", "#ff7f0e", "#2ca02c", "#1f77b4"]
         rainbow_hex = [
-        '#FF6666',  # 鲜红
-        '#FFB266',  # 橙黄
-        '#FFFF99',  # 淡黄
-        '#99FF99',  # 亮绿
-        '#99FFFF',  # 青色
-        '#99CCFF',  # 浅蓝
-        '#C299FF'   # 紫色
+        '#FF6666', 
+        '#FFB266',  
+        '#FFFF99',  
+        '#99FF99',  
+        '#99FFFF',  
+        '#99CCFF',  
+        '#C299FF'  
         ]
         obs_df = adata.obs.dropna()
         ARI = adjusted_rand_score(obs_df['leiden'], obs_df['ground_truth'])
         ARI_score = ARI
         print('Adjusted rand index = %.4f' % ARI)
-        NMI = normalized_mutual_info_score(obs_df['ground_truth'], obs_df['leiden'])  # 计算nmi
+        NMI = normalized_mutual_info_score(obs_df['ground_truth'], obs_df['leiden'])  
         print('NMI = %.4f' % NMI)
         HS_score = homogeneity_score(obs_df['leiden'], obs_df['ground_truth'])
         print('HS:', HS_score)
@@ -168,7 +168,7 @@ def main(id, domain):
         os.makedirs(dir+'/images', exist_ok=True)
         
         plt.savefig(dir+'/images/'+name+'.svg')
-        plt.close()  # 关闭当前图像，防止显示
+        plt.close()  
 
         # Plot UMAP
         # sc.pp.neighbors(adata, use_rep='emb')

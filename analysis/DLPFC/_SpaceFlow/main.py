@@ -17,7 +17,7 @@ def main(name):
     print("adata:", adata)
     import pandas as pd
     ground_truth_df = pd.read_csv(path + name + '_truth.txt', delimiter='\t', header=None, dtype=str)
-    adata.obs['ground_truth'] = ground_truth_df.iloc[:, 1].values  # 假设标签在第一列
+    adata.obs['ground_truth'] = ground_truth_df.iloc[:, 1].values  
     # Data preprocessing
     sc.pp.filter_genes(adata, min_cells=3)
     adata.var_names_make_unique()
@@ -57,18 +57,18 @@ def main(name):
     print("Unique predicted domains:", uniq_pred)
     cluster_num = 5 if name in ['151669', '151670', '151671', '151672'] else 7
     rainbow_hex = [
-    '#FF6666',  # 鲜红
-    '#FFB266',  # 橙黄
-    '#FFFF99',  # 淡黄
-    '#99FF99',  # 亮绿
-    '#99FFFF',  # 青色
-    '#99CCFF',  # 浅蓝
-    '#C299FF',  # 紫色
-    '#D32F2F',  # 深红
-    '#F57C00',  # 深橙
-    '#FBC02D',  # 深黄
-    '#388E3C',  # 深绿
-    '#0097A7',  # 深青
+    '#FF6666',  
+    '#FFB266',  
+    '#FFFF99',  
+    '#99FF99',  
+    '#99FFFF',  
+    '#99CCFF',  
+    '#C299FF',  
+    '#D32F2F',  
+    '#F57C00',  
+    '#FBC02D',  
+    '#388E3C',  
+    '#0097A7',  
 
     ]
 

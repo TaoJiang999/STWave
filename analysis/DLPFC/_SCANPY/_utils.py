@@ -12,7 +12,7 @@ from scipy.sparse import csr_matrix
 from typing import Literal
 import ot
 from svg_select import rank_gene_smooth,low_pass_enhancement
-#设置随机种子
+
 def seed_everything(seed):
     torch.manual_seed(seed)
     torch.cuda.manual_seed_all(seed)
@@ -22,7 +22,7 @@ def seed_everything(seed):
     dgl.random.seed(seed)
 
 
-#忽略警告
+
 def clear_warnings(func, category=FutureWarning):
     def warp(*args, **kwargs):
         with warnings.catch_warnings():
@@ -198,41 +198,41 @@ def obtain_spotnet(adata, rad_cutoff=150, k_cutoff=6, knn_method='KNN', prune=Tr
     Returns:
         None
     """
-    coor = pd.DataFrame(adata.obsm['spatial'])#读取空间坐标
-    coor.index = adata.obs.index#设置索引
-    coor.columns = ['imagerow', 'imagecol']#设置列名
+    coor = pd.DataFrame(adata.obsm['spatial'])
+    coor.index = adata.obs.index
+    coor.columns = ['imagerow', 'imagecol']
 
     nbrs = sklearn.neighbors.NearestNeighbors(radius=rad_cutoff, n_jobs=-1) if knn_method == 'Radius' else sklearn.neighbors.NearestNeighbors(
-        n_neighbors=k_cutoff + 1, n_jobs=-1)#半径构图  knn构图 实例化
+        n_neighbors=k_cutoff + 1, n_jobs=-1)
     nbrs.fit(coor)
     if knn_method == 'Radius':
-        distances, indices = nbrs.radius_neighbors(coor, return_distance=True)#获取最近距离和索引
-        #distances 返回的当前节点索引的邻居的距离，indices 返回的是距离中与之对应的节点索引
+        distances, indices = nbrs.radius_neighbors(coor, return_distance=True)
+        
     elif knn_method == 'KNN':
-        distances, indices = nbrs.kneighbors(coor)#获取最近距离和索引  使用knn时会判断是否需要剪枝
+        distances, indices = nbrs.kneighbors(coor)
         if prune:
-            non_zero_mask = distances > 0 #获取距离大于0的索引
-            non_zero_distances = np.where(non_zero_mask, distances, np.nan)#将
+            non_zero_mask = distances > 0
+            non_zero_distances = np.where(non_zero_mask, distances, np.nan)
             means = np.nanmean(non_zero_distances, axis=1, keepdims=True)
             stds = np.nanstd(non_zero_distances, axis=1, keepdims=True)
             boundaries = means + stds
             mask = distances > boundaries
             distances[mask] = 0
     cell_indices = np.repeat(np.arange(len(coor)), np.fromiter((len(idx) for idx in indices), dtype=int))
-    #len(idx) for idx in indices  计算每个点的邻居数量  生成源点索引[0,0,0,1,1,1]
-    neighbor_indices = np.concatenate(indices)#邻居索引
-    neighbor_distances = np.concatenate(distances)#邻居距离
-    KNN_df = pd.DataFrame({'Cell1': cell_indices, 'Cell2': neighbor_indices, 'Distance': neighbor_distances})#构建dataframe
-    Spatial_Net = KNN_df.copy()#复制KNN_df为Spatial_Net
-    Spatial_Net = Spatial_Net[Spatial_Net['Distance'] > 0]#筛选距离大于0，距离等于0的是当前节点
+    
+    neighbor_indices = np.concatenate(indices)
+    neighbor_distances = np.concatenate(distances)
+    KNN_df = pd.DataFrame({'Cell1': cell_indices, 'Cell2': neighbor_indices, 'Distance': neighbor_distances})
+    Spatial_Net = KNN_df.copy()
+    Spatial_Net = Spatial_Net[Spatial_Net['Distance'] > 0]
 
-    spot_net = csr_matrix((Spatial_Net['Distance'].values > 0, Spatial_Net[['Cell1', 'Cell2']].values.T)).toarray()#创建稀疏矩阵
-    spot_net = pd.DataFrame(spot_net.astype(int), index=adata.obs_names, columns=adata.obs_names)#创建邻接矩阵
-    adata.uns['spotnet_adj'] = spot_net#保存邻接矩阵到uns中
+    spot_net = csr_matrix((Spatial_Net['Distance'].values > 0, Spatial_Net[['Cell1', 'Cell2']].values.T)).toarray()
+    spot_net = pd.DataFrame(spot_net.astype(int), index=adata.obs_names, columns=adata.obs_names)
+    adata.uns['spotnet_adj'] = spot_net
     id_cell_trans = dict(zip(range(coor.shape[0]), np.array(coor.index), ))
-    Spatial_Net['Cell1'] = Spatial_Net['Cell1'].map(id_cell_trans)#将索引转为coor.index
+    Spatial_Net['Cell1'] = Spatial_Net['Cell1'].map(id_cell_trans)
     Spatial_Net['Cell2'] = Spatial_Net['Cell2'].map(id_cell_trans)
-    adata.uns['spotnet'] = Spatial_Net#保存网络到uns中
+    adata.uns['spotnet'] = Spatial_Net
 
 def obtain_pre_spotnet(adata, adata_raw, pre_feature=False, k_cutoff=6, res_pre=0.6):
     """
@@ -298,14 +298,14 @@ def prune_spatial_Net(Graph_df, label):
     Graph_df = Graph_df.loc[Graph_df['Cell1_label'] == Graph_df['Cell2_label'],]
     return Graph_df
 
-def torch2array(x):#把torchtensor转为array  numpy
+def torch2array(x):
     """Convert elements in x into arrays"""
     array = []
     for i in x:
         array.append(i.cpu().detach().numpy())
     return array
 
-def refine_label(adata, radius=50, key='label'):#平滑标签
+def refine_label(adata, radius=50, key='label'):
     """Used for smoothing clustering results"""
     n_neigh = radius
     new_type = []

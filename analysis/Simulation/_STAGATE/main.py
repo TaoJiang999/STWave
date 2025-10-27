@@ -72,7 +72,7 @@ def train(adata):
 
 @measure_resources
 def clustering(adata):
-    # 聚类的数量，使用mclust
+
     num_cluster = 9
     # sc.pp.neighbors(adata, use_rep='STAGATE')
     # sc.tl.umap(adata)
@@ -90,7 +90,7 @@ def save_data(adata):
     adata.obs['domain'] = adata.obs['mclust'].copy()
     # new_type = refine_label(adata, radius=10, key='domain')
     # adata.obs['domain'] = new_type
-    filtered_domain = adata.obs['domain'][obs_df.index]  # 按照obs_df的索引过滤domain
+    filtered_domain = adata.obs['domain'][obs_df.index]  
     filtered_ground_truth = obs_df['ann_level_3']
     assert len(filtered_domain) == len(
         filtered_ground_truth), f"Shape mismatch: domain has {len(filtered_domain)} elements, ground_truth has {len(filtered_ground_truth)} elements"
@@ -99,14 +99,14 @@ def save_data(adata):
     print('NMI:', NMI_score)
     print('HS:', HS_score)
 
-    # 创建数据字典
+
     data = {
         'Metric': ['ARI', 'NMI', 'HS'],
         'Score': [ARI_score, NMI_score, HS_score]
     }
-    # 创建 DataFrame
+
     df = pd.DataFrame(data)
-    # 保存为 CSV 文件
+
     df.to_csv(dir+'/metric.csv', index=False)
 
 if __name__ == "__main__":

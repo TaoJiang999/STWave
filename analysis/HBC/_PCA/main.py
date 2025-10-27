@@ -55,7 +55,7 @@ HS_score = homogeneity_score(obs_df['leiden'], obs_df[label_index])
 adata.obs['domain'] = adata.obs['leiden'].copy()
 # new_type = refine_label(adata, radius=10, key='domain')
 # adata.obs['domain'] = new_type
-filtered_domain = adata.obs['domain'][obs_df.index]  # 按照obs_df的索引过滤domain
+filtered_domain = adata.obs['domain'][obs_df.index]  
 filtered_ground_truth = obs_df[label_index]
 assert len(filtered_domain) == len(
         filtered_ground_truth), f"Shape mismatch: domain has {len(filtered_domain)} elements, ground_truth has {len(filtered_ground_truth)} elements"
@@ -64,31 +64,19 @@ print('ARI:', ARI_score)
 print('NMI:', NMI_score)
 print('HS:', HS_score)
 
-# 创建数据字典
+
 data = {
     'Metric': ['ARI', 'NMI', 'HS'],
     'Score': [ARI_score, NMI_score, HS_score]
 }
-# 创建 DataFrame
+
 df = pd.DataFrame(data)
-# 保存为 CSV 文件
+
 df.to_csv(dir+'/metric.csv', index=False)
 
 
 
 
-# rainbow_hex_10 = [
-#     '#E41A1C',  # 鲜红（Red）
-#     '#377EB8',  # 深蓝（Blue）
-#     '#4DAF4A',  # 亮绿（Green）
-#     '#984EA3',  # 紫色（Purple）
-#     '#FF7F00',  # 橙色（Orange）
-#     '#FFFF33',  # 鲜黄（Yellow）
-#     '#A65628',  # 棕色（Brown）
-#     '#F781BF',  # 粉色（Pink）
-#     '#999999',  # 灰色（Gray）
-#     '#66C2A5',  # 青绿（Teal）
-# ]
 
 # ax = sc.pl.spatial(adata, basis="spatial",show=False,spot_size=5, color='leiden',title='spatial clustering result of PCA',palette=rainbow_hex_10)
 # # ax.invert_yaxis()

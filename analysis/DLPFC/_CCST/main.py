@@ -29,7 +29,7 @@ def main():
 
 
     # from data_generation_ST import main
-    # # 生成数据
+    # 
     # setting_combinations = [[7, '151507'], [7, '151508'], [7, '151509'], [7, '151510'], [5, '151669'], [5, '151670'], [5, '151671'], [5, '151672'], [7, '151673'], [7, '151674'], [7, '151675'], [7, '151676']]
     # for setting_combi in setting_combinations:
     #     data_name = setting_combi[1]  # '151673'
@@ -76,8 +76,6 @@ def main():
     args.embedding_data_path = os.path.dirname(__file__)+ '/CCST/'
 
 
-    '''运行ccst，首先需要将adata数据转为Adjacent，cell_types.npy，coordinates.npy，features.npy，types_dic.txt，这5个数据，然后将这5个文件所在的路径读取数据，然后就可以开始运行了'''
-
     """DLPFC"""
     setting_combinations = [[7, '151507'], [7, '151508'], [7, '151509'], [7, '151510'], [5, '151669'], [5, '151670'], [5, '151671'], [5, '151672'], [7, '151673'], [7, '151674'], [7, '151675'], [7, '151676']]
     # setting_combinations = [[5, '151669'], [5, '151670'], [5, '151671'], [5, '151672'], [7, '151673'], [7, '151674'], [7, '151675'], [7, '151676']]
@@ -95,7 +93,7 @@ def main():
         ad = sc.read_visium(os.path.join(dir,args.data_name))
         import pandas as pd
         ground_truth_df = pd.read_csv(dir + args.data_name + '_truth.txt', delimiter='\t', header=None, dtype=str)
-        ad.obs['ground_truth'] = ground_truth_df.iloc[:, 1].values  # 假设标签在第一列
+        ad.obs['ground_truth'] = ground_truth_df.iloc[:, 1].values  
         # Data preprocessing
         ad.var_names_make_unique()
 
@@ -174,7 +172,7 @@ if __name__ == '__main__':
         print("adata:", adata)
         import pandas as pd
         ground_truth_df = pd.read_csv(os.path.join(adata_dir, name+'_truth.txt'), delimiter='\t', header=None, dtype=str)
-        adata.obs['ground_truth'] = ground_truth_df.iloc[:, 1].values  # 假设标签在第一列
+        adata.obs['ground_truth'] = ground_truth_df.iloc[:, 1].values  
         # Data preprocessing
         adata.var_names_make_unique()
         label = pd.read_csv(label_path, index_col=None,header=None,sep='\t')
@@ -198,7 +196,7 @@ if __name__ == '__main__':
         # adata.obs['domain'] = adata.obs['mclust'].copy()
         # new_type = refine_label(adata, radius=10, key='domain')
         # adata.obs['domain'] = new_type
-        filtered_domain = adata.obs['domain'][obs_df.index]  # 按照obs_df的索引过滤domain
+        filtered_domain = adata.obs['domain'][obs_df.index]  
         filtered_ground_truth = obs_df['ground_truth']
         assert len(filtered_domain) == len(
             filtered_ground_truth), f"Shape mismatch: domain has {len(filtered_domain)} elements, ground_truth has {len(filtered_ground_truth)} elements"
@@ -212,13 +210,13 @@ if __name__ == '__main__':
         
 
         rainbow_hex = [
-        '#FF6666',  # 鲜红
-        '#FFB266',  # 橙黄
-        '#FFFF99',  # 淡黄
-        '#99FF99',  # 亮绿
-        '#99FFFF',  # 青色
-        '#99CCFF',  # 浅蓝
-        '#C299FF'   # 紫色
+        '#FF6666',  
+        '#FFB266',  
+        '#FFFF99',  
+        '#99FF99',  
+        '#99FFFF',  
+        '#99CCFF',  
+        '#C299FF'   
         ]
         adata = adata[~adata.obs['ground_truth'].isnull()]
         tqdm.write('saving plot')
@@ -230,8 +228,7 @@ if __name__ == '__main__':
         os.makedirs(dir+'/images', exist_ok=True)
         
         plt.savefig(dir+'/images/'+name+'.svg')
-        plt.close()  # 关闭当前图像，防止显示
-
+        plt.close()  
         # Plot UMAP
         sc.pp.neighbors(adata, use_rep='emb')
         sc.tl.umap(adata)

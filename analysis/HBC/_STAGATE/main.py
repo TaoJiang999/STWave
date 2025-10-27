@@ -63,7 +63,7 @@ HS_score = homogeneity_score(obs_df['mclust'], obs_df['cell_type'])
 adata.obs['domain'] = adata.obs['mclust'].copy()
 # new_type = refine_label(adata, radius=10, key='domain')
 # adata.obs['domain'] = new_type
-filtered_domain = adata.obs['domain'][obs_df.index]  # 按照obs_df的索引过滤domain
+filtered_domain = adata.obs['domain'][obs_df.index]  
 filtered_ground_truth = obs_df['cell_type']
 assert len(filtered_domain) == len(
     filtered_ground_truth), f"Shape mismatch: domain has {len(filtered_domain)} elements, ground_truth has {len(filtered_ground_truth)} elements"
@@ -71,14 +71,14 @@ ARI_score = adjusted_rand_score(filtered_domain, filtered_ground_truth)
 print('ARI:', ARI_score)
 print('NMI:', NMI_score)
 print('HS:', HS_score)
-# 创建数据字典
+
 data = {
     'Metric': ['ARI', 'NMI', 'HS'],
     'Score': [ARI_score, NMI_score, HS_score]
 }
-# 创建 DataFrame
+
 df = pd.DataFrame(data)
-# 保存为 CSV 文件
+
 df.to_csv(dir+'/metric.csv', index=False)
 
 
@@ -89,16 +89,7 @@ df.to_csv(dir+'/metric.csv', index=False)
 # # sc.tl.leiden(adata, random_state=2025, resolution=0.3)
 # sc.tl.louvain(adata, random_state=2025, resolution=0.3,key_added='leiden')
 # # adata = mclust_R(adata, used_obsm='DeepWave', num_cluster=cluster_num)
-# rainbow_hex = [
-#     '#FF6666',  # 鲜红
-#     '#FFB266',  # 橙黄
-#     '#FFFF99',  # 淡黄
-#     '#99FF99',  # 亮绿
-#     '#99FFFF',  # 青色
-#     '#99CCFF',  # 浅蓝
-#     '#C299FF',  # 紫色
-#     "#000000"  # 黑色
-# ]
+
 # ax = sc.pl.spatial(adata, basis="spatial",show=False, spot_size=5.0,color='leiden',title='spatial clustering result of STAGATE',cmap='Pastel1')
 # # ax.invert_yaxis()
 # plt.axis('off')

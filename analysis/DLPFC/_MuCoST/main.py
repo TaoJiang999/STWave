@@ -4,7 +4,7 @@ sys.path.append('/home/cavin/jt/python/MuCoST-master')
 import pandas as pd
 import warnings
 from tqdm import tqdm
-# 忽略 ImplicitModificationWarning
+
 
 warnings.filterwarnings("ignore", category=UserWarning)
 import numpy as np
@@ -44,19 +44,19 @@ def main(id, domain):
     obs_df = adata.obs.dropna()
     ARI = adjusted_rand_score(obs_df['mclust'], obs_df['ground_truth'])
     print('Adjusted rand index = %.4f' %ARI)
-    NMI = normalized_mutual_info_score(obs_df['ground_truth'], obs_df['mclust'])#计算nmi
+    NMI = normalized_mutual_info_score(obs_df['ground_truth'], obs_df['mclust'])
     print('NMI = %.4f' %NMI)
     HS_score = homogeneity_score(obs_df['mclust'], obs_df['ground_truth'])
     r = {'ARI':ARI,'NMI':NMI,'HS':HS_score}
     result[id] = r
     rainbow_hex = [
-        '#FF6666',  # 鲜红
-        '#FFB266',  # 橙黄
-        '#FFFF99',  # 淡黄
-        '#99FF99',  # 亮绿
-        '#99FFFF',  # 青色
-        '#99CCFF',  # 浅蓝
-        '#C299FF'  # 紫色
+        '#FF6666',  
+        '#FFB266',  
+        '#FFFF99',  
+        '#99FF99',  
+        '#99FFFF',  
+        '#99CCFF',  
+        '#C299FF'  
     ]
     cluster_num = domain
     adata.obs['domain'] = adata.obs['mclust'].copy()
@@ -73,7 +73,7 @@ def main(id, domain):
     # os.makedirs(file_dir+'/DLPFC_final/'+dir, exist_ok=True)
     # plt.savefig(file_dir+'/DLPFC_final/'+dir+'/'+name+'.png', bbox_inches='tight', dpi=300)
     plt.savefig(file_dir + '/images/' + id + '.svg', bbox_inches='tight', dpi=300)
-    plt.close()  # 关闭当前图像，防止显示
+    plt.close()  
 
     # Plot UMAP
     sc.pp.neighbors(adata, use_rep='MuCoST')

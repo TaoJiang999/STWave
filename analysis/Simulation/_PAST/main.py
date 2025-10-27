@@ -73,7 +73,7 @@ def save_data(adata):
     NMI_score = normalized_mutual_info_score(obs_df['louvain'], obs_df['ann_level_3'], average_method='max')
     HS_score = homogeneity_score(obs_df['louvain'], obs_df['ann_level_3'])
     adata.obs['domain'] = adata.obs['louvain'].copy()
-    filtered_domain = adata.obs['domain'][obs_df.index]  # 按照obs_df的索引过滤domain
+    filtered_domain = adata.obs['domain'][obs_df.index]  
     filtered_ground_truth = obs_df['ann_level_3']
     assert len(filtered_domain) == len(
         filtered_ground_truth), f"Shape mismatch: domain has {len(filtered_domain)} elements, ground_truth has {len(filtered_ground_truth)} elements"
@@ -82,14 +82,14 @@ def save_data(adata):
     print('NMI:', NMI_score)
     print('HS:', HS_score)
 
-    # 创建数据字典
+
     data = {
         'Metric': ['ARI', 'NMI', 'HS'],
         'Score': [ARI_score, NMI_score, HS_score]
     }
-    # 创建 DataFrame
+
     df = pd.DataFrame(data)
-    # 保存为 CSV 文件
+
     df.to_csv(dir+'/metric_2.csv', index=False)
 
 if __name__ == "__main__":

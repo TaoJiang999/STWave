@@ -15,7 +15,7 @@ import warnings
 from tqdm import tqdm
 from IPython.display import display
 result = {}
-# 忽略所有警告
+
 warnings.filterwarnings("ignore")
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
@@ -83,13 +83,13 @@ def main(id, domain):
         r = {'ARI':ARI,'NMI':NMI,'HS':HS_score}
         result[id] = r
         rainbow_hex = [
-            '#FF6666',  # 鲜红
-            '#FFB266',  # 橙黄
-            '#FFFF99',  # 淡黄
-            '#99FF99',  # 亮绿
-            '#99FFFF',  # 青色
-            '#99CCFF',  # 浅蓝
-            '#C299FF'  # 紫色
+            '#FF6666',  
+            '#FFB266',  
+            '#FFFF99',  
+            '#99FF99', 
+            '#99FFFF',  
+            '#99CCFF',  
+            '#C299FF' 
         ]
         cluster_num = domain
         adata.obs['domain'] = adata.obs['mclust'].copy()
@@ -106,8 +106,7 @@ def main(id, domain):
         # os.makedirs(file_dir+'/DLPFC_final/'+dir, exist_ok=True)
         # plt.savefig(file_dir+'/DLPFC_final/'+dir+'/'+name+'.png', bbox_inches='tight', dpi=300)
         plt.savefig(file_dir + '/images/' + id + '.svg', bbox_inches='tight', dpi=300)
-        plt.close()  # 关闭当前图像，防止显示
-
+        plt.close()  
         # Plot UMAP
         sc.pp.neighbors(adata, use_rep='emb_pca')
         sc.tl.umap(adata)

@@ -81,7 +81,7 @@ def main(name):
     print("adata:", adata)
     import pandas as pd
     ground_truth_df = pd.read_csv(path + name + '_truth.txt', delimiter='\t', header=None, dtype=str)
-    adata.obs['ground_truth'] = ground_truth_df.iloc[:, 1].values  # 假设标签在第一列
+    adata.obs['ground_truth'] = ground_truth_df.iloc[:, 1].values  
     # Data preprocessing
     adata.var_names_make_unique()
     x = np.array(adata.X.toarray()).astype('float64')
@@ -215,7 +215,7 @@ def main(name):
     adata.obs['domain'] = adata.obs['domain'].copy()
     # new_type = refine_label(adata, radius=10, key='domain')
     # adata.obs['domain'] = new_type
-    filtered_domain = adata.obs['domain'][obs_df.index]  # 按照obs_df的索引过滤domain
+    filtered_domain = adata.obs['domain'][obs_df.index]  
     filtered_ground_truth = obs_df['ground_truth']
     assert len(filtered_domain) == len(
         filtered_ground_truth), f"Shape mismatch: domain has {len(filtered_domain)} elements, ground_truth has {len(filtered_ground_truth)} elements"
@@ -228,13 +228,13 @@ def main(name):
     r = {'ARI':ARI_score,'NMI':NMI_score,'HS':HS_score}
     result[name] = r
     rainbow_hex = [
-    '#FF6666',  # 鲜红
-    '#FFB266',  # 橙黄
-    '#FFFF99',  # 淡黄
-    '#99FF99',  # 亮绿
-    '#99FFFF',  # 青色
-    '#99CCFF',  # 浅蓝
-    '#C299FF'   # 紫色
+    '#FF6666',  
+    '#FFB266',  
+    '#FFFF99',  
+    '#99FF99',  
+    '#99FFFF',  
+    '#99CCFF',  
+    '#C299FF'   
     ]
     adata = adata[~adata.obs['ground_truth'].isnull()]
     adata.uns['ground_truth_colors'] = rainbow_hex[:cluster_num]
@@ -247,7 +247,7 @@ def main(name):
     # os.makedirs(file_dir+'/DLPFC_final/'+dir, exist_ok=True)
     # plt.savefig(file_dir+'/DLPFC_final/'+dir+'/'+name+'.png', bbox_inches='tight', dpi=300)
     plt.savefig(file_dir+'/images/'+name+'.svg', bbox_inches='tight', dpi=300)
-    plt.close()  # 关闭当前图像，防止显示
+    plt.close()  
 
     # Plot UMAP
     sc.pp.neighbors(adata, use_rep='emb')

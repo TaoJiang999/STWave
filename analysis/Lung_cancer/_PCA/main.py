@@ -51,7 +51,7 @@ for res in res_list:
     adata.obs['domain'] = adata.obs['leiden'].copy()
     # new_type = refine_label(adata, radius=10, key='domain')
     # adata.obs['domain'] = new_type
-    filtered_domain = adata.obs['domain'][obs_df.index]  # 按照obs_df的索引过滤domain
+    filtered_domain = adata.obs['domain'][obs_df.index]  
     filtered_ground_truth = obs_df[label_index]
     assert len(filtered_domain) == len(
             filtered_ground_truth), f"Shape mismatch: domain has {len(filtered_domain)} elements, ground_truth has {len(filtered_ground_truth)} elements"
@@ -66,14 +66,12 @@ for res in res_list:
 
 
 df = pd.DataFrame(results, columns=['resolution', 'ARI', 'NMI', 'HS'])
-# 创建数据字典
-# 保存为 CSV 文件
+
 df.to_csv(dir+'/images/metric.csv', index=False)
 
 
 df = pd.DataFrame(cluster_results, columns=['resolution', 'n_cluster'])
-# 创建数据字典
-# 保存为 CSV 文件
+
 df.to_csv(dir+'/images/n_cluster.csv', index=False)
 
 

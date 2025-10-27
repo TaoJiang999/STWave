@@ -83,7 +83,6 @@ def train(adata):
 # @measure_resources
 def clustering(adata):
       print("------clustering...")
-    # # 聚类的数量，使用mclust
     # n_clusters = adata.obs['cell_type'].nunique()
     # print('n_clusters:', n_clusters)
     # # sc.pp.neighbors(adata, use_rep='STAGATE')
@@ -112,7 +111,7 @@ def save_data(adata):
         adata.obs['domain'] = adata.obs['mclust'].copy()
         # new_type = refine_label(adata, radius=10, key='domain')
         # adata.obs['domain'] = new_type
-        filtered_domain = adata.obs['domain'][obs_df.index]  # 按照obs_df的索引过滤domain
+        filtered_domain = adata.obs['domain'][obs_df.index]  
         filtered_ground_truth = obs_df['cell_type']
         assert len(filtered_domain) == len(
             filtered_ground_truth), f"Shape mismatch: domain has {len(filtered_domain)} elements, ground_truth has {len(filtered_ground_truth)} elements"
@@ -123,14 +122,12 @@ def save_data(adata):
         results.append([res, ARI_score, NMI_score, HS_score])
         cluster_results.append(res,adata.obs['leiden'].nunique())
     df = pd.DataFrame(results, columns=['resolution', 'ARI', 'NMI', 'HS'])
-    # 创建数据字典
-    # 保存为 CSV 文件
+
     df.to_csv(dir+'/metric.csv', index=False)
 
 
     df = pd.DataFrame(cluster_results, columns=['resolution', 'n_cluster'])
-    # 创建数据字典
-    # 保存为 CSV 文件
+
     df.to_csv(dir+'/n_cluster.csv', index=False)
 
 

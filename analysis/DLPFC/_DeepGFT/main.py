@@ -1,7 +1,7 @@
 import os
 import sys
 sys.path.append('/home/cavin/jt/python/DeepGFT-main')
-# 获取当前工作目录
+
 current_dir = os.getcwd()
 print(f"Current working directory: {current_dir}")
 from matplotlib import pyplot as plt
@@ -31,7 +31,7 @@ def train(name):
     #ground_truth = sc.read_csv(path+name+'_truth.txt',delimiter='\t',dtype=str,first_column_names=None)
     import pandas as pd
     ground_truth_df = pd.read_csv(path+name+'_truth.txt', delimiter='\t', header=None, dtype=str)
-    adata.obs['ground_truth'] = ground_truth_df.iloc[:, 1].values  # éć¤ćˇéć¤ćˇéč§âćˇčŻéć­äźćˇéďż?
+    adata.obs['ground_truth'] = ground_truth_df.iloc[:, 1].values  # 
     #adata.obs['ground_truth'] = ground_truth.X
 
     # Data preprocessing

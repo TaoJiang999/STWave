@@ -86,12 +86,10 @@ for res in res_list:
 
 
 df = pd.DataFrame(results, columns=['resolution', 'ARI', 'NMI', 'HS'])
-# 创建数据字典
-# 保存为 CSV 文件
+
 df.to_csv(dir+'/metric.csv', index=False)
 
 
 df = pd.DataFrame(cluster_results, columns=['resolution', 'n_cluster'])
-# 创建数据字典
-# 保存为 CSV 文件
+
 df.to_csv(dir+'/n_cluster.csv', index=False)
