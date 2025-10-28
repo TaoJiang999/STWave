@@ -77,7 +77,7 @@ def main(id, domain):
         obs_df = adata.obs.dropna()
         ARI = adjusted_rand_score(obs_df['mclust'], obs_df['ground_truth'])
         print('Adjusted rand index = %.4f' % ARI)
-        NMI = normalized_mutual_info_score(obs_df['ground_truth'], obs_df['mclust'])  # 计算nmi
+        NMI = normalized_mutual_info_score(obs_df['ground_truth'], obs_df['mclust'])  
         print('NMI = %.4f' % NMI)
         HS_score = homogeneity_score(obs_df['mclust'], obs_df['ground_truth'])
         r = {'ARI':ARI,'NMI':NMI,'HS':HS_score}

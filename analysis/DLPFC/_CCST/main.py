@@ -178,7 +178,6 @@ if __name__ == '__main__':
         label = pd.read_csv(label_path, index_col=None,header=None,sep='\t')
         # emb = pd.read_csv(emb_path, index_col=0,header=0,sep=',')
         emb = np.load(emb_path,allow_pickle=False)
-        # 验证数据
         print("Shape of embed_x:", emb.shape)
         print("Data type:", emb.dtype)
         print("First few rows:\n", emb[:5])

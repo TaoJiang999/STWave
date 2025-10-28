@@ -73,13 +73,13 @@ def train(name):
     r = {'ARI':ARI_score,'NMI':NMI_score,'HS':HS_score}
     result[name] = r
     rainbow_hex = [
-    '#FF6666',  # 鲜红
-    '#FFB266',  # 橙黄
-    '#FFFF99',  # 淡黄
-    '#99FF99',  # 亮绿
-    '#99FFFF',  # 青色
-    '#99CCFF',  # 浅蓝
-    '#C299FF'   # 紫色
+    '#FF6666',  
+    '#FFB266',  
+    '#FFFF99',  
+    '#99FF99',  
+    '#99FFFF',  
+    '#99CCFF',  
+    '#C299FF'   
     ]
 
     adata = adata[~adata.obs['ground_truth'].isnull()]

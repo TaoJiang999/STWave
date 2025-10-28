@@ -25,7 +25,6 @@ def train(name:str):
     emb_path = os.path.join(dir,'images',name+'_label.csv')
     label = pd.read_csv(label_path, index_col=0,header=0,sep=',')
     # emb = pd.read_csv(emb_path, index_col=0,header=0,sep=',')
-    # 对齐索引到 adata.obs.index
     label = label.reindex(adata.obs.index, fill_value=np.nan)
     # emb = emb.reindex(adata.obs.index, fill_value=np.nan)
     end = time.time()

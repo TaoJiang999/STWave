@@ -25,7 +25,7 @@ def loading_and_preprocess_data(name):
     start = time.time()
     import pandas as pd
     ground_truth_df = pd.read_csv(path + name + '_truth.txt', delimiter='\t', header=None, dtype=str)
-    adata.obs['ground_truth'] = ground_truth_df.iloc[:, 1].values  # 假设标签在第一列
+    adata.obs['ground_truth'] = ground_truth_df.iloc[:, 1].values  
     # Data preprocessing
     adata.var_names_make_unique()
     adata.X = adata.X.astype(np.float32)
@@ -78,7 +78,7 @@ def save_data(adata,name):
     NMI_score = normalized_mutual_info_score(obs_df['mclust'], obs_df['ground_truth'], average_method='max')
     HS_score = homogeneity_score(obs_df['mclust'], obs_df['ground_truth'])
     adata.obs['domain'] = adata.obs['mclust'].copy()
-    filtered_domain = adata.obs['domain'][obs_df.index]  # 按照obs_df的索引过滤domain
+    filtered_domain = adata.obs['domain'][obs_df.index]  
     filtered_ground_truth = obs_df['ground_truth']
     assert len(filtered_domain) == len(
         filtered_ground_truth), f"Shape mismatch: domain has {len(filtered_domain)} elements, ground_truth has {len(filtered_ground_truth)} elements"

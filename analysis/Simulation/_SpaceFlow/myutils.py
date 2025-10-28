@@ -48,7 +48,7 @@ def measure_resources(func):
         
         if torch.cuda.is_available():
             try:
-                device = torch.device("cuda:0")  # 默认使用GPU 0
+                device = torch.device("cuda:0")  
                 allocated = torch.cuda.memory_allocated(device) / (1024 ** 3)
                 cached = torch.cuda.memory_reserved(device) / (1024 ** 3)
             except Exception as e:
@@ -76,7 +76,7 @@ def measure_resources(func):
             'gpu_memory_allocated_gb': round(allocated, 2),
             'gpu_memory_cached_gb': round(cached, 2),
             'cuda_available': torch.cuda.is_available(),
-            'device_idx': 0  # 默认GPU 0
+            'device_idx': 0  
         }
         
      

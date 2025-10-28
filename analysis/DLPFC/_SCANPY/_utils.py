@@ -32,7 +32,7 @@ def clear_warnings(func, category=FutureWarning):
     return warp
 
 
-def select_device(GPU: Union[bool, str] = True,):#选择设备
+def select_device(GPU: Union[bool, str] = True,):
     if GPU:
         if torch.cuda.is_available():
             if isinstance(GPU, str):

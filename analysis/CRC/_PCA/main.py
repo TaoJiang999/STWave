@@ -34,14 +34,14 @@ sc.tl.umap(adata)
 sc.tl.louvain(adata, random_state=2025, resolution=0.05,key_added='leiden')
 # adata = mclust_R(adata, used_obsm='STWave', num_cluster=cluster_num)
 rainbow_hex = [
-    '#FF6666',  # 鲜红
-    '#FFB266',  # 橙黄
-    '#FFFF99',  # 淡黄
-    '#99FF99',  # 亮绿
-    '#99FFFF',  # 青色
-    '#99CCFF',  # 浅蓝
-    '#C299FF',  # 紫色
-    "#000000"  # 黑色
+    '#FF6666',  
+    '#FFB266',  
+    '#FFFF99',  
+    '#99FF99',  
+    '#99FFFF',  
+    '#99CCFF',  
+    '#C299FF',  
+    "#000000"  
 ]
 ax = sc.pl.embedding(adata, basis="spatial",show=False, s=0.3, color='leiden',title='spatial clustering result of PCA',cmap='tab20')
 ax.invert_yaxis()

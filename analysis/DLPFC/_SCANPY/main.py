@@ -38,7 +38,7 @@ def train(name):
     print("adata:", adata)
     import pandas as pd
     ground_truth_df = pd.read_csv(path + name + '_truth.txt', delimiter='\t', header=None, dtype=str)
-    adata.obs['ground_truth'] = ground_truth_df.iloc[:, 1].values  # 假设标签在第一列
+    adata.obs['ground_truth'] = ground_truth_df.iloc[:, 1].values  
     # Data preprocessing
     adata.var_names_make_unique()
     prefilter_genes(adata, min_cells=3)

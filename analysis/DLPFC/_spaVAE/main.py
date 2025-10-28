@@ -2,7 +2,7 @@
 import sys
 import os
 
-# 添加 project1 目录到路径
+
 sys.path.append("/home/cavin/jt/python/spaVAE-main/src/spaVAE")
 # sys.path.append("/home/guo/jiangtao/python/spaVAE-main/src/spaVAE")
 from spaVAE import SPAVAE
