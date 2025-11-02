@@ -1,6 +1,6 @@
 # STWave
 
-This document will help you easily go through STWave model.
+This document will help you easily go through STWave model. 
 
 ![](./overview.png)
 
