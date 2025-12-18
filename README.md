@@ -1,6 +1,6 @@
 # STWave
 
-This document will help you easily go through STWave model. 
+This document will help you easily go through STWave model.
 
 ![](./overview.png)
 
@@ -63,3 +63,5 @@ For the step-by-step tutorial, please refer to: [STWave tutorial](https://github
 All custom code research is found in the [analysis](https://github.com/TaoJiang999/STWave/tree/main/analysis)
 
 ## Reference
+
+## Contact
