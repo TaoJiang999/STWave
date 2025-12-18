@@ -2,7 +2,7 @@
 
 This document will help you easily go through STWave model.
 
-![](./overview.png)
+![](./STWave.png)
 
 ## System Requirments
 
