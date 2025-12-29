@@ -54,6 +54,8 @@ pip install .
 
 ## Usage
 
+STWave is a scalable framework designed for ultra-large microscopic-resolution spatial transcriptomics ($\mu$ST) data. By leveraging a **decoupled patch-based learning strategy** and **discrete wavelet transforms**, STWave enables efficient analysis of millions of spots on standard hardware with constant memory consumption.
+
 ## Tutorial
 
 For the step-by-step tutorial, please refer to: [STWave tutorial](https://github.com/TaoJiang999/STWave/tree/main/Tutorial)
@@ -65,3 +67,5 @@ All custom code research is found in the [analysis](https://github.com/TaoJiang9
 ## Reference
 
 ## Contact
+
+Feel free to submit an issue or contact us at [taoj@mails.cqjtu.edu.cn](mailto:taoj@mails.cqjtu.edu.cn) for problems about the packages.
