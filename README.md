@@ -1,4 +1,5 @@
 <div align="center">
+  <img src="./stwave_logo_wide.png" alt="STWave Logo" width="500">
   <h1 align="center">STWave: Fine-Scale Spatial Structure Discovery in Microscopic-Resolution Spatial Transcriptomics via Patchwise Wavelet Graphs</h1>
 
   <img src="./STWave.png" alt="STWave Banner" width="100%">
