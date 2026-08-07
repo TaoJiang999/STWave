@@ -2,3 +2,7 @@
 /**/.idea/
 /**/build/
 /**/stwave.egg-info/
+/.vscode
+/tests
+/.idea
+/.claude

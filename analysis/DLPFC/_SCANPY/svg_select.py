@@ -29,10 +29,10 @@ def get_laplacian_mtx(adata,
         es could be found in adata.obs or adata.obsm.
     num_neighbors: int, optional
         The number of neighbors for each node/spot/pixel when contrcut graph.
-        The defalut if 6.
-    spatial_key=None : list | string
-        Get the coordinate information by adata.obsm[spaital_key] or
-        adata.var[spatial_key]. The default is ['array_row', 'array_col'].
+        The default is 6.
+    spatial_key : list | string, optional
+        Get the coordinate information by adata.obsm[spatial_key] or
+        adata.obs[spatial_key]. The default is ['array_row', 'array_col'].
     normalization : bool, optional
         Whether need to normalize laplacian matrix. The default is False.
 
@@ -131,7 +131,7 @@ def rank_gene_smooth(adata,
         more genes indentified as SVGs according to gft_score. The default is
         5.
     cal_pval : bool, optional
-        Whether need to calculate p val by mannwhitneyu. The default is False.
+        Whether need to calculate p val by mannwhitneyu. The default is True.
     Returns
     -------
     score_df : dataframe
@@ -357,7 +357,8 @@ def low_pass_enhancement(adata,
 
     Returns
     -------
-    count_matrix: DataFrame
+    None
+        The function modifies adata in-place if `inplace=True`, otherwise returns None.
 
     """
     import scipy.sparse as ss

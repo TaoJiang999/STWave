@@ -77,7 +77,7 @@ class Wavelet1DEncoderDecoder(nn.Module):
         encoded = torch.tensor(np.stack(encoded_list), dtype=x.dtype).to(self.device)
         return encoded.to('cpu')
 
-    def decode(self, encoded,is_nonoe_negetive=True):
+    def decode(self, encoded, is_nonoe_negetive=True):
         """
         Decode the encoded wavelet coefficients and reconstruct the gene expression matrix
 
@@ -85,11 +85,13 @@ class Wavelet1DEncoderDecoder(nn.Module):
         ----------
         encoded : torch.Tensor
             The encoded wavelet coefficients, shape [B, D]
+        is_nonoe_negetive : bool, optional
+            If True, clamp the decoded result to be non-negative. The default is True.
 
         Returns
         -------
         decoded : torch.Tensor
-            The reconstructed gene expression matrix, with the shape [B, G], is guaranteed to be non-negative
+            The reconstructed gene expression matrix, with the shape [B, G]
         """
 
         encoded_np = encoded.detach().cpu().numpy()
